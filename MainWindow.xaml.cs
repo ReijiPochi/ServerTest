@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,14 +29,13 @@ namespace ServerTest
 
             Loaded += MainWindow_Loaded;
             Closing += MainWindow_Closing;
-        }
 
-        System.Net.Sockets.UdpClient udp;
+            
+        }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //UdpClientを閉じる
-            udp.Close();
+
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -54,30 +54,49 @@ namespace ServerTest
             //    }
             //}
 
-            //バインドするローカルIPとポート番号
-            string localIpString = "192.168.3.30";
-            IPAddress localAddress = IPAddress.Parse(localIpString);
-            int localPort = 810;
+            ListenMessage();
+        }
 
-
-            //UdpClientを作成し、ローカルエンドポイントにバインドする
-            IPEndPoint localEP = new IPEndPoint(localAddress, localPort);
-            udp = new System.Net.Sockets.UdpClient(localEP);
-
+        public async void ListenMessage()
+        {
+            // 接続ソケットの準備
+            var local = new IPEndPoint(IPAddress.Any, 810);
+            var client = new UdpClient(local);
 
             while (true)
             {
-                //データを受信する
-                IPEndPoint remoteEP = null;
-                byte[] rcvBytes = udp.Receive(ref remoteEP);
+                // データ受信待機
+                var result = await client.ReceiveAsync();
 
-                //データを文字列に変換する
-                string rcvMsg = Encoding.UTF8.GetString(rcvBytes);
+                // 受信したデータを変換
+                var data = Encoding.UTF8.GetString(result.Buffer);
 
-                //受信したデータと送信者の情報を表示する
-                Console.WriteLine("受信したデータ:{0}", rcvMsg);
-                Console.WriteLine("送信元アドレス:{0}/ポート番号:{1}", remoteEP.Address, remoteEP.Port);
+                // Receive イベント を実行
+                OnRecieve(data);
             }
+
+            //// 接続ソケットの準備
+            //var local = new IPEndPoint(IPAddress.Any, 810);
+            //var remote = new IPEndPoint(IPAddress.Any, 810);
+            //var client = new UdpClient(local);
+
+            //while (true)
+            //{
+            //    // データ受信待機
+            //    var buffer = client.Receive(ref remote);
+
+            //    // 受信したデータを変換
+            //    var data = Encoding.UTF8.GetString(buffer);
+
+            //    // Receive イベント を実行
+            //    this.OnRecieve(data);
+            //}
+
+        }
+
+        private void OnRecieve(string data)
+        {
+            ConsoleTb.Text += data;
         }
     }
 }
