@@ -1,0 +1,14 @@
+F:\GitHub\ServerTest\ServerTest\bin\Debug\ServerTest.exe.config
+F:\GitHub\ServerTest\ServerTest\bin\Debug\ServerTest.exe
+F:\GitHub\ServerTest\ServerTest\bin\Debug\ServerTest.pdb
+F:\GitHub\ServerTest\ServerTest\obj\Debug\ServerTest.csprojResolveAssemblyReference.cache
+F:\GitHub\ServerTest\ServerTest\obj\Debug\MainWindow.g.cs
+F:\GitHub\ServerTest\ServerTest\obj\Debug\App.g.cs
+F:\GitHub\ServerTest\ServerTest\obj\Debug\ServerTest_MarkupCompile.cache
+F:\GitHub\ServerTest\ServerTest\obj\Debug\ServerTest_MarkupCompile.lref
+F:\GitHub\ServerTest\ServerTest\obj\Debug\MainWindow.baml
+F:\GitHub\ServerTest\ServerTest\obj\Debug\ServerTest.g.resources
+F:\GitHub\ServerTest\ServerTest\obj\Debug\ServerTest.Properties.Resources.resources
+F:\GitHub\ServerTest\ServerTest\obj\Debug\ServerTest.csproj.GenerateResource.Cache
+F:\GitHub\ServerTest\ServerTest\obj\Debug\ServerTest.exe
+F:\GitHub\ServerTest\ServerTest\obj\Debug\ServerTest.pdb
